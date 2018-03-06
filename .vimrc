@@ -3,9 +3,19 @@
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
+" ここにプラグインを記述したら、.vimrcの更新をして、
+" :PlugInstall を行うこと
 
 " Make sure you use single quotes
 Plug 'vim-jp/vimdoc-ja'
+
+" add this line to your .vimrc file
+Plug 'mattn/emmet-vim'
+
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 
 " Initialize plugin system
 call plug#end()
@@ -103,6 +113,4 @@ augroup source-vimrc
   autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
   autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 augroup END
-
-
 
